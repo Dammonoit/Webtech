@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>IMAGE SLIDER</title>
+<style>
+#divbutton
+{
+height:50px;
+width:200px;
+color:#333;
+background-color:white;
+display:inline-block;
+border-radius:8px;
+padding:10px;
+margin:-20 50 20 145;
+vertical-align:middle;
+text-align:center;
+line-height: 50px;
+font-family:lato;
+font-weight:bold;
+font-size:20px;
+border: 2px solid black;
+}
+
+#divbutton:hover
+{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+
+h2{
+		color: BLACK;
+		padding: 15px;
+				
+		}
+h1{
+		color: BLACK;
+		padding: 15px;
+		text-align: center;
+		}
+.main {
+margin: 0 auto;
+width: 60%;
+background-color: #fff;
+min-height: 500px;
+}
+.slider {
+width: 100%;
+overflow: hidden;
+height: 350px;
+position: relative;
+}
+.slider ul {
+margin: 0;
+padding: 0;
+list-style: none;
+position: absolute;
+width: 300%;
+height: 100%;
+top: 0;
+}
+.slider li {
+padding: 0;
+margin: 0;
+width: 33.333333%;
+height: 100%;
+overflow: hidden;
+position: absolute;
+top: 0;
+bottom: 0;
+}
+.slider button {
+position: absolute;
+display: block;
+width: 50px;
+height: 50px;
+background-color: #000;
+border: solid 1px #000;
+border-radius: 50%;
+float: left;
+margin:10px;
+margin-top: 150px;
+background-color: grey;
+text-align:center;
+opacity: 2;
+z-index: 2;
+}
+.slider button.prev {
+left: 0;
+}
+.slider button.next {
+right: 0;
+}
+.slider button:hover, .slider button:active {
+opacity: 1.0;
+}
+.slider li img {
+border: none;
+width: 100%;
+min-height: 100%;
+}
+</style>
+</head>
+<body style="background-image: url(img/background.jpg)"">
+<div>
+<h2>Name : DHARMENDRA CHOUDHARY	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg. No : 15BIT0324<br>
+Subject : Web Technologies<br>
+DIGITAL ASSIGNMENT-2</h2>
+</div>
+<h1>Image Slider Example</h1>
+<script src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+$(function() {
+
+var ul = $(".slider ul");
+var slide_count = ul.children().length;
+var slide_width_pc = 300.0 / slide_count;
+var slide_index = 0;
+ul.find("li").each(function(indx) {
+var left_percent = (slide_width_pc * indx) + "%";
+$(this).css({"left":left_percent});
+$(this).css({width:(300 / slide_count) + "%"});
+});
+
+$(".prev").hide();
+// Listen for click of prev button
+$(".prev").click(function() {
+console.log("prev button clicked");
+$(".next").show();
+slide(slide_index - 1);
+});
+// Listen for click of next button
+$(".next").click(function() {
+console.log("next button clicked");
+$(".prev").show();
+slide(slide_index + 1);
+});
+function slide(final_index) {
+if(final_index <= 0 ) 
+	{ 
+		$(".prev").hide();
+	}
+if(final_index >= slide_count-2)
+	{
+ 		$(".next").hide();
+ 	}
+var margin_left_pc = (final_index* (-300))/2 + "%";
+ul.animate({"margin-left": margin_left_pc}, 1000, function() {
+slide_index = final_index;
+});
+}
+}
+);
+</script>
+<div class="main" style="background-image: url(images/bg.jpg)"">
+<div class="slider">
+<ul>
+<li><img src="img/new1.jpg" height="100px" width="70px" >
+</li>
+<li><img src="img/new2.jpg" height="100px" width="70px">
+</li>
+<li><img src="img/new3.jpg" height="100px" width="70px">
+</li>
+<li><img src="img/new4.jpg" height="100px" width="70px">
+</li>
+<li><img src="img/new5.jpg" height="100px" width="70px">
+</li>
+<li><img src="img/new6.jpg" height="100px" width="70px">
+</li>
+<li><img src="img/new7.jpg" height="100px" width="70px">
+</li>
+</ul>
+</div>
+</div>
+<center>
+ <div id="divbutton"  >
+<button class="prev">prev</button>
+<button  class="next">next</button>
+</div>
+</center>
+
+</body>
+</html>
+
